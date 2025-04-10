@@ -1,55 +1,28 @@
 
-git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
-http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
-# -- bazel_dep definitions -- #
 module(
     name = "bazel-tools",
     version = "0.0.1",
     compatibility_level = 0,
 )
 
+# -- rules -- #
+
+git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
+http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
+
+# -- bazel_dep definitions -- #
+
 bazel_dep(name = "buildifier_prebuilt", version = "8.0.3")
+bazel_dep(name = "rules_go", version = "0.52.0")
+bazel_dep(name = "gazelle", version = "0.42.0")
+bazel_dep(name = "stardoc", version = "0.8.0")
+bazel_dep(name = "rules_cc", version = "0.1.1")
+bazel_dep(name = "rules_java", version = "8.11.0")
 
-http_file(
-    name = "io_bazel_rules_go",
-    sha256 = "af47f30e9cbd70ae34e49866e201b3f77069abb111183f2c0297e7e74ba6bbc0",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.47.0/rules_go-v0.47.0.zip",
-        "https://github.com/bazelbuild/rules_go/releases/download/v0.47.0/rules_go-v0.47.0.zip",
-    ],
-)
-
-http_file(
-    name = "bazel_gazelle",
-    sha256 = "75df288c4b31c81eb50f51e2e14f4763cb7548daae126817247064637fd9ea62",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/bazel-gazelle/releases/download/v0.36.0/bazel-gazelle-v0.36.0.tar.gz",
-        "https://github.com/bazelbuild/bazel-gazelle/releases/download/v0.36.0/bazel-gazelle-v0.36.0.tar.gz",
-    ],
-)
-
-# http_file(
-#     name = "com_github_bazelbuild_buildtools",
-#     sha256 = "60a9025072ae237f325d0e7b661e1685f34922c29883888c2d06f5789462b939",
-#     urls = ["https://github.com/bazelbuild/buildtools/archive/refs/tags/v7.1.1.tar.gz"],
-# )
+# -- git -- #
 
 git_repository(
     name = "com_google_protobuf",
-    commit = "2f6e7055952eeff2fef2f29edb092c97e7949793",  #2024-05-04
+    commit = "43e1626812c1b543e56a7bec59dc09eb18248bd2",
     remote = "https://github.com/protocolbuffers/protobuf.git",
 )
-
-# Stardoc is a documentation generator for Bazel
-http_file(
-    name = "io_bazel_stardoc",
-    sha256 = "62bd2e60216b7a6fec3ac79341aa201e0956477e7c8f6ccc286f279ad1d96432",
-    urls = [
-        "https://mirror.bazel.build/github.com/bazelbuild/stardoc/releases/download/0.6.2/stardoc-0.6.2.tar.gz",
-        "https://github.com/bazelbuild/stardoc/releases/download/0.6.2/stardoc-0.6.2.tar.gz",
-    ],
-)
-
-# -- use_repo_rule statements -- #
-
-# -- repo definitions -- #
