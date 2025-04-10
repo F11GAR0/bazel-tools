@@ -2,6 +2,11 @@
 git_repository = use_repo_rule("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 http_file = use_repo_rule("@bazel_tools//tools/build_defs/repo:http.bzl", "http_file")
 # -- bazel_dep definitions -- #
+module(
+    name = "bazel-tools",
+    version = "0.0.1",
+    compatibility_level = 0,
+)
 
 bazel_dep(name = "buildifier_prebuilt", version = "8.0.3")
 
