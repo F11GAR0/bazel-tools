@@ -1,6 +1,12 @@
+*.swp
+*.lock
+resolved_deps.py
+WORKSPACE.bzlmod
 /bazel-bin
 /bazel-genfiles
 /bazel-out
 /bazel-bazel-tools
+/bazel-central-registry
 /bazel-testlogs
 /.idea
+__pycache__
