@@ -1,5 +1,5 @@
 module(
-    name = "bazel-tools",
+    name = "compat-bazel-tools",
     version = "0.0.1",
     compatibility_level = 0,
 )
