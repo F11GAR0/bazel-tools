@@ -1,14 +1,14 @@
 workspace(name = "revive_example")
 
 local_repository(
-    name = "com_github_ash2k_bazel_tools",
+    name = "compat-bazel-tools",
     path = "../..",
 )
 
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 http_archive(
-    name = "io_bazel_rules_go",
+    name = "rules_go",
     sha256 = "685052b498b6ddfe562ca7a97736741d87916fe536623afb7da2824c0211c369",
     urls = [
         "https://mirror.bazel.build/github.com/bazelbuild/rules_go/releases/download/v0.33.0/rules_go-v0.33.0.zip",
@@ -26,7 +26,7 @@ http_archive(
 )
 
 load("@bazel_gazelle//:deps.bzl", "gazelle_dependencies")
-load("@io_bazel_rules_go//go:def.bzl", "go_register_toolchains", "go_rules_dependencies")
+load("@rules_go//go:def.bzl", "go_register_toolchains", "go_rules_dependencies")
 
 go_rules_dependencies()
 
@@ -35,6 +35,6 @@ go_register_toolchains("1.18.3")
 gazelle_dependencies()
 
 # Load go_revive_dependencies Bazel rule.
-load("@com_github_ash2k_bazel_tools//gorevive:deps.bzl", "go_revive_dependencies")
+load("@compat-bazel-tools//gorevive:deps.bzl", "go_revive_dependencies")
 
 go_revive_dependencies()

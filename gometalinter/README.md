@@ -25,17 +25,17 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # gometalinter needs Go SDK and hence needs rules_go.
 # See https://github.com/bazelbuild/rules_go for the up to date setup instructions.
 http_archive(
-    name = "io_bazel_rules_go",
+    name = "rules_go",
 )
 
 git_repository(
-    name = "com_github_ash2k_bazel_tools",
+    name = "compat-bazel-tools",
     commit = "<commit>",
     remote = "https://github.com/ash2k/bazel-tools.git",
     shallow_since = "<bla>",
 )
 
-load("@com_github_ash2k_bazel_tools//gometalinter:deps.bzl", "gometalinter_dependencies")
+load("@compat-bazel-tools//gometalinter:deps.bzl", "gometalinter_dependencies")
 
 gometalinter_dependencies()
 ```
@@ -43,7 +43,7 @@ gometalinter_dependencies()
 `BUILD.bazel` typically in the workspace root:
 
 ```bzl
-load("@com_github_ash2k_bazel_tools//gometalinter:def.bzl", "gometalinter")
+load("@compat-bazel-tools//gometalinter:def.bzl", "gometalinter")
 
 gometalinter(
     name = "gometalinter",

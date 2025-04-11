@@ -1,6 +1,6 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
-load("@io_bazel_rules_go//go:def.bzl", "GoSDK")
+load("@rules_go//go:def.bzl", "GoSDK")
 
 def _gometalinter_impl(ctx):
     args = []
@@ -57,12 +57,12 @@ _gometalinter = rule(
             doc = "Go import path of this project i.e. where in GOPATH you would put it. E.g. github.com/ash2k/bazel-tools",
         ),
         "_gometalinter": attr.label(
-            default = "@com_github_ash2k_bazel_tools_gometalinter//:linter",
+            default = "@compat-bazel-tools_gometalinter//:linter",
             cfg = "exec",
             executable = True,
         ),
         "_runner": attr.label(
-            default = "@com_github_ash2k_bazel_tools//gometalinter:runner.bash.template",
+            default = "@compat-bazel-tools//gometalinter:runner.bash.template",
             allow_single_file = True,
         ),
         "_go_sdk": attr.label(

@@ -15,11 +15,11 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # buildozer is written in Go and hence needs rules_go to be built.
 # See https://github.com/bazelbuild/rules_go for the up to date setup instructions.
 http_archive(
-    name = "io_bazel_rules_go",
+    name = "rules_go",
 )
 
 git_repository(
-    name = "com_github_ash2k_bazel_tools",
+    name = "compat-bazel-tools",
     commit = "<commit>",
     remote = "https://github.com/ash2k/bazel-tools.git",
     shallow_since = "<bla>",
@@ -32,7 +32,7 @@ git_repository(
     shallow_since = "1576187991 -0800",
 )
 
-load("@com_github_ash2k_bazel_tools//buildozer:deps.bzl", "buildozer_dependencies")
+load("@compat-bazel-tools//buildozer:deps.bzl", "buildozer_dependencies")
 load("@com_google_protobuf//:protobuf_deps.bzl", "protobuf_deps")
 
 buildozer_dependencies()
@@ -43,7 +43,7 @@ protobuf_deps()
 `BUILD.bazel` typically in the workspace root:
 
 ```bzl
-load("@com_github_ash2k_bazel_tools//buildozer:def.bzl", "buildozer")
+load("@compat-bazel-tools//buildozer:def.bzl", "buildozer")
 
 buildozer(
     name = "buildozer",

@@ -1,6 +1,6 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
-load("@io_bazel_rules_go//go:def.bzl", "go_context")
+load("@rules_go//go:def.bzl", "go_context")
 
 def _goimports_impl(ctx):
     go = go_context(ctx)
@@ -69,7 +69,7 @@ _goimports = rule(
             doc = "Display diffs instead of rewriting files",
         ),
         "_go_context_data": attr.label(
-            default = "@io_bazel_rules_go//:go_context_data",
+            default = "@rules_go//:go_context_data",
         ),
         "report_all_errors": attr.bool(
             doc = "Report all errors (not just the first 10 on different lines)",
@@ -92,11 +92,11 @@ _goimports = rule(
             executable = True,
         ),
         "_runner": attr.label(
-            default = "@com_github_ash2k_bazel_tools//goimports:runner.bash.template",
+            default = "@compat-bazel-tools//goimports:runner.bash.template",
             allow_single_file = True,
         ),
     },
-    toolchains = ["@io_bazel_rules_go//go:toolchain"],
+    toolchains = ["@rules_go//go:toolchain"],
     executable = True,
 )
 

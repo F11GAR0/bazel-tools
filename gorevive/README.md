@@ -33,7 +33,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # revive has to be compiled from sources, hence we need rules_go.
 # See https://github.com/bazelbuild/rules_go for the up to date setup instructions.
 http_archive(
-    name = "io_bazel_rules_go",
+    name = "rules_go",
 )
 
 # go_repository rule is required which is provided by bazel_gazelle.
@@ -43,14 +43,14 @@ http_archive(
 )
 
 git_repository(
-    name = "com_github_ash2k_bazel_tools",
+    name = "compat-bazel-tools",
     commit = "<commit>",
     remote = "https://github.com/ash2k/bazel-tools.git",
     shallow_since = "<bla>",
 )
 
 # Load go_revive_dependencies Bazel rule.
-load("@com_github_ash2k_bazel_tools//gorevive:deps.bzl", "go_revive_dependencies")
+load("@compat-bazel-tools//gorevive:deps.bzl", "go_revive_dependencies")
 
 go_revive_dependencies()
 ```
@@ -68,7 +68,7 @@ filegroup(
     visibility = ["//visibility:private"],
 )
 
-load("@com_github_ash2k_bazel_tools//gorevive:def.bzl", "go_revive_test")
+load("@compat-bazel-tools//gorevive:def.bzl", "go_revive_test")
 
 go_revive_test(
     name = "revive_test",

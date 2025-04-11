@@ -1,3 +1,0 @@
-Running @//multirun/test:command_cat
-A cat!
-Two cats!

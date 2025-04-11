@@ -1,6 +1,6 @@
 load("@bazel_skylib//lib:paths.bzl", "paths")
 load("@bazel_skylib//lib:shell.bzl", "shell")
-load("@io_bazel_rules_go//go:def.bzl", "GoSDK")
+load("@rules_go//go:def.bzl", "GoSDK")
 
 def _golangcilint_impl(ctx):
     args = []
@@ -65,12 +65,12 @@ _golangcilint = rule(
             doc = "Go import path of this project i.e. where in GOPATH you would put it. E.g. github.com/ash2k/bazel-tools",
         ),
         "_golangcilint": attr.label(
-            default = "@com_github_ash2k_bazel_tools_golangcilint//:linter",
+            default = "@compat-bazel-tools_golangcilint//:linter",
             cfg = "exec",
             executable = True,
         ),
         "_runner": attr.label(
-            default = "@com_github_ash2k_bazel_tools//golangcilint:runner.bash.template",
+            default = "@compat-bazel-tools//golangcilint:runner.bash.template",
             allow_single_file = True,
         ),
         "_go_sdk": attr.label(

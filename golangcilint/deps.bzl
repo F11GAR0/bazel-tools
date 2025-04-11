@@ -42,7 +42,7 @@ def _golangcilint_download_impl(ctx):
 
     ctx.template(
         "BUILD.bazel",
-        Label("@com_github_ash2k_bazel_tools//golangcilint:golangcilint.build.bazel"),
+        Label("@compat-bazel-tools//golangcilint:golangcilint.build.bazel"),
         executable = False,
     )
     ctx.download_and_extract(
@@ -66,5 +66,5 @@ def golangcilint_dependencies():
         ],
     )
     _golangcilint_download(
-        name = "com_github_ash2k_bazel_tools_golangcilint",
+        name = "compat-bazel-tools_golangcilint",
     )

@@ -25,17 +25,17 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # golangci-lint needs Go SDK and hence needs rules_go.
 # See https://github.com/bazelbuild/rules_go for the up to date setup instructions.
 http_archive(
-    name = "io_bazel_rules_go",
+    name = "rules_go",
 )
 
 git_repository(
-    name = "com_github_ash2k_bazel_tools",
+    name = "compat-bazel-tools",
     commit = "<commit>",
     remote = "https://github.com/ash2k/bazel-tools.git",
     shallow_since = "<bla>",
 )
 
-load("@com_github_ash2k_bazel_tools//golangcilint:deps.bzl", "golangcilint_dependencies")
+load("@compat-bazel-tools//golangcilint:deps.bzl", "golangcilint_dependencies")
 
 golangcilint_dependencies()
 ```
@@ -43,7 +43,7 @@ golangcilint_dependencies()
 `BUILD.bazel` typically in the workspace root:
 
 ```bzl
-load("@com_github_ash2k_bazel_tools//golangcilint:def.bzl", "golangcilint")
+load("@compat-bazel-tools//golangcilint:def.bzl", "golangcilint")
 
 golangcilint(
     name = "golangcilint",

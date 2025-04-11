@@ -13,7 +13,7 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 # rjsone is written in Go and hence needs rules_go and gazelle to be built.
 # See https://github.com/bazelbuild/bazel-gazelle for the up to date setup instructions.
 http_archive(
-    name = "io_bazel_rules_go",
+    name = "rules_go",
 )
 
 http_archive(
@@ -21,13 +21,13 @@ http_archive(
 )
 
 git_repository(
-    name = "com_github_ash2k_bazel_tools",
+    name = "compat-bazel-tools",
     commit = "<commit>",
     remote = "https://github.com/ash2k/bazel-tools.git",
     shallow_since = "<bla>",
 )
 
-load("@com_github_ash2k_bazel_tools//:rjsone/deps.bzl", "rjsone_dependencies")
+load("@compat-bazel-tools//:rjsone/deps.bzl", "rjsone_dependencies")
 
 rjsone_dependencies()
 ```
@@ -35,7 +35,7 @@ rjsone_dependencies()
 `BUILD.bazel` file:
 
 ```bzl
-load("@com_github_ash2k_bazel_tools//:rjsone/def.bzl", "rjsone")
+load("@compat-bazel-tools//:rjsone/def.bzl", "rjsone")
 
 filegroup(
     name = "list",
